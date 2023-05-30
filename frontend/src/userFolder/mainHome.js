@@ -9,7 +9,7 @@ const MainContainer = ()=>{
     let quote = 'Start your day with planning out what you want to achieve today !!!'
     const decideQuote = ()=>{
         if(time.getHours()>=4 && time.getHours()<12){
-            quote = quotes[3].quote
+            quote = quotes[0].quote
         }
         if(time.getHours()>=12 && time.getHours()<16){
             quote = quotes[1].quote
@@ -18,7 +18,7 @@ const MainContainer = ()=>{
             quote = quotes[2].quote
         }
         if(time.getHours()>=20 || time.getHours()<4){
-            quote = quotes[0].quote
+            quote = quotes[3].quote
         }
     }
     decideQuote()

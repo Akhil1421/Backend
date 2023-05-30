@@ -55,9 +55,12 @@ button{
 }
 @media screen and (max-width : 640px) {
     .main-container{
-        margin-left: 3rem;
+        margin-left: 2rem;
     }
     .quote{
-        margin-left: 1.5rem;
+        margin-left: 0.5rem;
+    }
+    h2{
+        margin-right: 0.2rem;
     }
 }

@@ -44,3 +44,13 @@
     gap : 2rem;
     flex-direction: column;
 }
+
+@media screen and (max-width : 480px) {
+    .opts{
+        min-width: 2rem;
+        opacity: 0.95;
+    }    
+    .opts>svg{
+        min-width: 1rem;
+    }
+}
