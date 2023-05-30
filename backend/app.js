@@ -7,16 +7,8 @@ const path = require("path")
 
 const port = 4000
 app.use(express.json())
-app.use(express.static(path.join(__dirname, "./frontend/build")))
-app.use(router)
-app.get("*", (req,res)=>{
-    res.sendFile(
-        path.join(__dirname, "./frontend/build/index.html"),
-        (err)=>{
-            res.status(500).send(err)
-        }
-    )
-})
+app.use(express.static(path.join(__dirname, "../frontend/build")))
+app.use("/", router)
 const start  = ()=>{
     app.listen(port,async()=>{        
         try {
