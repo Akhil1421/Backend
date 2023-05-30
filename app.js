@@ -7,7 +7,7 @@ const path = require("path")
 
 const port = 4000
 app.use(express.json())
-app.use(express.static(path.join(__dirname, "../frontend/build")))
+app.use(express.static(path.join(__dirname, "./frontend/build")))
 app.use("/", router)
 const start = async()=>{
     try {
