@@ -52,59 +52,64 @@ const ToDoList = ()=>{
             })
             let pending = response.data.filter((x)=>x.completed===false)
             let completed = response.data.filter((x)=>x.completed===true)
-            setTasks(pending.map((task, ind)=>{
-                return (
-                        <div className="des" key={ind}>
-                            <div className="taskDes" style={{display: "flex", justifyContent :"center"}}>{task.task}</div>
-                            <div className="icons">
-                            <div onClick={completedTask} style={{display: "grid", placeContent :"center"}}> 
-                                <button id={`c ${ind}`} style={{border : "none"}}>  
-                                    <MdCloudDone style={{cursor : "pointer"}}/>
-                                </button>
-                            </div>                            
-                            <div onClick={deleteTask} style={{display: "grid", placeContent :"center"}}> 
-                                <button id={`t ${ind}`} style={{border : "none"}}><BiTrash style={{cursor : "pointer"}}/></button>
+            if(pending.length===0)setTasks([])
+            else {
+                    setTasks(pending.map((task, ind)=>{
+                    return (
+                            <div className="des" key={ind}>
+                                <div className="taskDes" style={{display: "flex", justifyContent :"center"}}>{task.task}</div>
+                                <div className="icons">
+                                <div onClick={completedTask} style={{display: "grid", placeContent :"center"}}> 
+                                    <button id={`c ${ind}`} style={{border : "none"}}>  
+                                        <MdCloudDone style={{cursor : "pointer"}}/>
+                                    </button>
+                                </div>                            
+                                <div onClick={deleteTask} style={{display: "grid", placeContent :"center"}}> 
+                                    <button id={`t ${ind}`} style={{border : "none"}}><BiTrash style={{cursor : "pointer"}}/></button>
+                                </div>
+                                </div>
                             </div>
-                            </div>
+                    )
+                }))
+            }
+            if(completed.length>0){
+                setCompleted(completed.map((task, ind)=>{
+                    let starting = task.createdAt
+                    let sDate =  "", stime=""
+                    let dashes=0;
+                    for(let i=0;i<starting.length;i++){
+                        if(starting[i]==='-')dashes++;
+                        if(dashes<3){
+                            sDate = sDate + starting[i]
+                        }
+                        else{
+                            stime = starting.substr(i+1)
+                            break;
+                        }
+                    }
+                    dashes=0;
+                    let compl = task.updatedAt
+                    let date = "", time = ""
+                    for(let i=0;i<compl.length;i++){
+                        if(compl[i]==='-')dashes++;
+                        if(dashes<3){
+                            date = date + compl[i]
+                        }
+                        else if(dashes===3){
+                            if(compl[i]!=='-')time = time + compl[i]
+                        }
+                    }
+                    return(
+                        <div className="des2" style={{borderRadius : "0.5rem"}}>
+                            <div key={`l${ind}`}><b>Task : </b><span style={{color : "white"}}>{task.task}</span></div>
+                            <div key={`0l${ind}`}><b>Started On : </b><span style={{color : "white"}}>{`${sDate}`}</span></div>
+                                <div key={`0.l${ind}`}><b>Time of Starting : </b><span style={{color : "white"}}>{`${stime}`}</span></div>
+                                <div key={`1l${ind}`}><b>Completed On : </b><span style={{color : "white"}}>{date}</span></div>
+                                <div key={`2l${ind}`}><b>Time of Completion : </b><span style={{color : "white"}}>{time}</span></div>
                         </div>
-                )
-            }))
-            setCompleted(completed.map((task, ind)=>{
-                let starting = task.createdAt
-                let sDate =  "", stime=""
-                let dashes=0;
-                for(let i=0;i<starting.length;i++){
-                    if(starting[i]==='-')dashes++;
-                    if(dashes<3){
-                        sDate = sDate + starting[i]
-                    }
-                    else{
-                        stime = starting.substr(i+1)
-                        break;
-                    }
-                }
-                dashes=0;
-                let compl = task.updatedAt
-                let date = "", time = ""
-                for(let i=0;i<compl.length;i++){
-                    if(compl[i]==='-')dashes++;
-                    if(dashes<3){
-                        date = date + compl[i]
-                    }
-                    else if(dashes===3){
-                        if(compl[i]!=='-')time = time + compl[i]
-                    }
-                }
-                return(
-                    <div className="des2" style={{borderRadius : "0.5rem"}}>
-                        <div key={`l${ind}`}><b>Task : </b><span style={{color : "white"}}>{task.task}</span></div>
-                        <div key={`0l${ind}`}><b>Started On : </b><span style={{color : "white"}}>{`${sDate}`}</span></div>
-                            <div key={`0.l${ind}`}><b>Time of Starting : </b><span style={{color : "white"}}>{`${stime}`}</span></div>
-                            <div key={`1l${ind}`}><b>Completed On : </b><span style={{color : "white"}}>{date}</span></div>
-                            <div key={`2l${ind}`}><b>Time of Completion : </b><span style={{color : "white"}}>{time}</span></div>
-                    </div>
-                )
-            }))
+                    )
+                }))
+            }
         } catch (error) {
             console.log(error)
             navigate("/")

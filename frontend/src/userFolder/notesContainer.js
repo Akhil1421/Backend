@@ -73,6 +73,7 @@ const NotesContainer = ()=>{
             })            
                 getNotes()
                 setShowNew(true)
+                setColor("white")
             }
             else {
                 setShowWarning(true)
