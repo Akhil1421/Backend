@@ -45,6 +45,11 @@
     flex-direction: column;
 }
 
+@media screen and (max-width: 580px) {
+    .opts{
+        min-width: 2.2rem;
+    }
+}
 @media screen and (max-width : 480px) {
     .opts{
         min-width: 2rem;

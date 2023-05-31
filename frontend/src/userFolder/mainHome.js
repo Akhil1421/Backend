@@ -29,7 +29,7 @@ const MainContainer = ()=>{
                     <h1>Welcome ! ! !</h1>
                 </div>
                     <h2>Its {`${time.getHours()} : ${time.getMinutes()}`}</h2>
-                    <div style={{display : "flex", justifyContent : "center"}} className="quote"><h4>{quote}</h4></div>
+                    <div style={{display : "flex", justifyContent : "center"}} className="quote"><h5>{quote}</h5></div>
                 </center>
             </div>
     )
